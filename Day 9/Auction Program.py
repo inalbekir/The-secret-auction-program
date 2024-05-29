@@ -1,4 +1,5 @@
 import os
+import subprocess
 from art import logo
 
 print(logo)
@@ -7,7 +8,9 @@ bids = {}
 bidding_finished = False
 
 def clear():
-    os.system('cls' if os.name == 'nt' else 'clear')
+    # Setting the TERM environment variable
+    os.environ['TERM'] = 'xterm-256color'
+    subprocess.run('clear' if os.name != 'nt' else 'cls', shell=True)
 
 def find_highest_bidder(bidding_record):
     highest_bid = 0
